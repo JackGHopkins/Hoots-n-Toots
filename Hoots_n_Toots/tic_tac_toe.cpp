@@ -1,19 +1,12 @@
-
+#include <iostream>
 using namespace std;
 
 bool x;
 bool o;
 
-int grid[4][4] = {
-   {0, 0, 0, 0} ,   /*  initializers for row indexed by 0 */
-   {0, 0, 0, 7} ,   /*  initializers for row indexed by 1 */
-   {0, 0, 0, 0} ,	/*  initializers for row indexed by 2 */
-   {0, 0, 0, 0}	/*  initializers for row indexed by 3 */
-};
 
-int win_condition[24] = { {1}, {1}, {1}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, {0}, };
 
-int points(int win_condition[], int grid[][]) {
+void points(int win_condition[24], int grid[][4]) {
 
 	// 24 * 2 Conditions in total.
 	int i;
@@ -128,24 +121,26 @@ int points(int win_condition[], int grid[][]) {
 	if (grid[1][3] || grid[2][2] || grid[3][1]) {
 		win_condition[23] = win_condition[23] + i;
 	}
-
-	int win(int win_condition[]) {
-		for (int z; z < sizeof(win_condition); ++z) {
-			if (win_condition[z] == 3) {
-				count << "X Wins" << endl;
-				system("pause");
-			}
-
-			else  (win_condition[z] == -3) {
-				count << "O Wins" << endl;
-				system("pause");
-			}
-		}
-	}
-
-	int main() {
-		points(win_condition, grid);
-		win(win_condition);
-	}
-
 }
+
+void win(int win_condition[24]) {
+	
+	int z;
+
+	for (z = 0; z < sizeof(win_condition[24]); z++) {
+
+		if (win_condition[z] == 3) {
+			cout << "X wins" << endl;
+		}
+
+		else if (win_condition[z] == -3) {
+			cout << "O wins" << endl;
+		}
+		
+		else {
+			return;
+		}
+
+	}
+}
+
