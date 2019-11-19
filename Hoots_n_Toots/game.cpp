@@ -6,6 +6,7 @@ float player_pos_x = -18.f;
 float player_pos_y = +18.f;
 float gridline_width = 0.2f;
 float gridline_length = 24.f;
+float gridline_length_mod = 0.2f;
 
 int gridline_spacing = 12.5;
 
@@ -55,11 +56,11 @@ simulate_game (Input* input, float dt) {
 	}
 
 	// Horizontal Lines.
-	draw_rect(0, 2*gridline_spacing, gridline_length, gridline_width, 0xffffff);
-	draw_rect(0, gridline_spacing, gridline_length, gridline_width, 0xffffff);
-	draw_rect(0, 0, gridline_length, gridline_width, 0xffffff);
-	draw_rect(0, -1*gridline_spacing, gridline_length, gridline_width, 0xffffff);
-	draw_rect(0, -2*gridline_spacing, gridline_length, gridline_width, 0xffffff);
+	draw_rect(0, 2*gridline_spacing, gridline_length + gridline_length_mod, gridline_width, 0xffffff);
+	draw_rect(0, gridline_spacing, gridline_length + gridline_length_mod, gridline_width, 0xffffff);
+	draw_rect(0, 0, gridline_length + gridline_length_mod, gridline_width, 0xffffff);
+	draw_rect(0, -1*gridline_spacing, gridline_length + gridline_length_mod, gridline_width, 0xffffff);
+	draw_rect(0, -2*gridline_spacing, gridline_length + gridline_length_mod, gridline_width, 0xffffff);
 	
 	// Vertical Lines.
 	draw_rect(2 * gridline_spacing, 0, gridline_width, gridline_length, 0xffffff);
