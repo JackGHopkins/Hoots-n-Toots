@@ -121,7 +121,20 @@ input.buttons[b].is_down = is_down;\
 						process_button(BUTTON_RIGHT, VK_RIGHT);
 					}
 
+
 				} break;
+
+
+				case WM_LBUTTONDOWN: {
+					input.buttons[BUTTON_LMB].is_down = true;
+					input.buttons[BUTTON_LMB].changed = true;
+				} break;
+
+				case WM_LBUTTONUP: {
+					input.buttons[BUTTON_LMB].is_down = false;
+					input.buttons[BUTTON_LMB].changed = true;
+				} break;
+
 
 					
 

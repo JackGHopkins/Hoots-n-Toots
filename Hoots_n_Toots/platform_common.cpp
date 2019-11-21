@@ -8,6 +8,7 @@ enum {
 	BUTTON_DOWN,
 	BUTTON_LEFT,
 	BUTTON_RIGHT,
+	BUTTON_LMB,
 
 	BUTTON_COUNT, // Should be the last item in the array, so we always know the size.
 };
