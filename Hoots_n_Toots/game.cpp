@@ -7,7 +7,7 @@ using namespace std;
 #define pressed(b) (input->buttons[b].is_down && input->buttons[b].changed)
 #define release(b) (!input->buttons[b].is_down && input->buttons[b].changed)
 
-struct tokens {
+struct token {
 	int height;
 	int width;
 	int xcoord;
