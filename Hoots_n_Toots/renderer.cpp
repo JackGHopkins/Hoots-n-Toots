@@ -53,12 +53,12 @@ draw_rect(float x, float y, float half_size_x, float half_size_y, u32 color) {
 }
 
 internal void
-draw_token(int grid[4][4], int pos_x, int pos_y, int grid_spacing, int token_mod) {
+draw_token(struct token token[4][4], int grid_spacing, int token_mod) {
 
 	// Iterate through all squares on the board to check if a token has been placed.
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			if (grid[i][j] == 1 ) {
+			if (*token[j][i]->bin_colour == 1 ) {
 				draw_rect(j * grid_spacing - token_mod, i * -grid_spacing + token_mod, 4, 1, 0xff0000);
 			}
 			else if (grid[i][j] == -1 )

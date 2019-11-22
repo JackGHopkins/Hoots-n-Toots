@@ -1,11 +1,21 @@
 //game.cpp
-
+#include <iostream>
 #include <string>
 using namespace std;
 
 #define is_down(b) input->buttons[b].is_down
 #define pressed(b) (input->buttons[b].is_down && input->buttons[b].changed)
 #define release(b) (!input->buttons[b].is_down && input->buttons[b].changed)
+
+struct tokens {
+	int height;
+	int width;
+	int xcoord;
+	int ycoord;
+	int bin_colour;
+	unsigned int colour;
+} token [4][4];
+
 
 float player_pos_x = -18.f;
 float player_pos_y = +18.f;
@@ -14,7 +24,6 @@ float gridline_length = 24.f;
 float gridline_length_mod = 0.2f;
 
 int grid_spacing = 12.5;
-
 int token_mod = 18;
 
 // Selecting Square in grid
@@ -63,31 +72,30 @@ simulate_game(Input* input, float dt) {
 
 	// Placing tokens for - 
 	if (pressed(BUTTON_LMB) && player_colour == 1 && temp_colour == 1) {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
+		token[pos_y][pos_x].bin_colour = 1;
+		token[pos_y][pos_x].colour = 0xff0000;
+		token[pos_y][pos_x].height = 1;
+		token[pos_y][pos_x].width = 4;
+		token[pos_y][pos_x].xcoord = pos_x;
+		token[pos_y][pos_x].ycoord = pos_y;
 
-				// Check if spot is empty.
-				if (grid[i][j] != -1) {
-					grid[pos_y][pos_x] = 1;
-					player_colour = -1;
-					temp_colour = 1;
-				}
-			}
-		}
+		grid[pos_y][pos_x] = 1;
+		player_colour = -1;
+		temp_colour = 1;
 	}
 
 	if (pressed(BUTTON_LMB) && player_colour == -1 && temp_colour == -1 ) {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
+		token[pos_y][pos_x].bin_colour = 1;
+		token[pos_y][pos_x].colour = 0xff0000;
+		token[pos_y][pos_x].height = 1;
+		token[pos_y][pos_x].width = 4;
+		token[pos_y][pos_x].xcoord = pos_x;
+		token[pos_y][pos_x].ycoord = pos_y;
 
-				// Check if spot is empty.
-				if (grid[i][j] != 1) {
-					grid[pos_y][pos_x] = -1;
-					player_colour = 1;
-					temp_colour = -1;
-				}
-			}
-		}
+		grid[pos_y][pos_x] = -1;
+		player_colour = 1;
+		temp_colour = -1;
+
 	}
 
 	// Colour Switches
@@ -121,7 +129,7 @@ simulate_game(Input* input, float dt) {
 	draw_rect(-2 * grid_spacing, 0, gridline_width, gridline_length, 0xffffff);
 
 	// Draw Tokens.
-	draw_token(grid, pos_x, pos_y, grid_spacing, token_mod);
+	draw_token(token, grid_spacing, token_mod);
 
 	check_win(win_condition, grid);
 }
